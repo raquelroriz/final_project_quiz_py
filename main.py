@@ -41,7 +41,24 @@ def show_result():
   option3_btn.config(state=tk.DISABLED) 
   option4_btn.config(state=tk.DISABLED)
 
+  play_again_btn.config(state=tk.NORMAL)
+  play_again_btn.pack(pady=20)
 
+def play_again():
+  global score, current_question, questions
+  score = 0
+  current_question = 0
+  
+  questions = df.sample(n=10).values.tolist()
+  
+  option1_btn.config(state=tk.NORMAL)
+  option2_btn.config(state=tk.NORMAL)
+  option3_btn.config(state=tk.NORMAL)
+  option4_btn.config(state=tk.NORMAL)
+
+  play_again_btn.pack_forget()
+  
+  display_question()
 
 window = tk.Tk()
 window.title("Python Quiz")
@@ -79,8 +96,7 @@ option3_btn.pack(pady=10)
 option4_btn = tk.Button(window, text="Option 4", bg=button_color, fg=button_text_color, width=30, state=tk.DISABLED, font=("Arial", 10, "bold"))
 option4_btn.pack(pady=10)
 
-play_again_btn = tk.Button(window, text="Play Again", bg="#EEF085", fg=button_text_color, width=20, state=tk.DISABLED, font=("Arial", 10, "bold"))
-play_again_btn.pack(pady=10)
+play_again_btn = tk.Button(window, command=play_again, text="Play Again", bg="#EEF085", fg=button_text_color, width=20, state=tk.DISABLED, font=("Arial", 10, "bold"))
 
 display_question()
 

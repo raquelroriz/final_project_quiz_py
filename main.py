@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 
 df = pd.read_csv("questions.csv")
 
-questions = df.sample(n=20).values.tolist()
+questions = df.sample(n=10).values.tolist()
 
 score = 0
 current_question = 0
@@ -22,10 +22,7 @@ def check_answer(answer):
   if current_question < len(questions):
     display_question()
   else:
-    pass
-    #show_result()
-
-
+    show_result()
 
 def display_question():
   question, option1, option2, option3, option4, answer = questions[current_question]
@@ -36,6 +33,15 @@ def display_question():
   option4_btn.config(text=option4, state=tk.NORMAL, command=lambda: check_answer(4))
 
   correct_answer.set(answer)
+
+def show_result():
+  messagebox.showinfo("Quiz Result", f"Congratulations!\nYou completed the quiz.\n\n Your score: {score}/{len(questions)}")
+  option1_btn.config(state=tk.DISABLED)
+  option2_btn.config(state=tk.DISABLED)
+  option3_btn.config(state=tk.DISABLED) 
+  option4_btn.config(state=tk.DISABLED)
+
+
 
 window = tk.Tk()
 window.title("Python Quiz")

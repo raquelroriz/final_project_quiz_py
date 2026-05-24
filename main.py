@@ -11,17 +11,31 @@ questions = df.sample(n=20).values.tolist()
 score = 0
 current_question = 0
 
+def check_answer(answer):
+  global score, current_question
+
+  if answer == correct_answer.get():
+    score += 1
+
+  current_question += 1
+
+  if current_question < len(questions):
+    display_question()
+  else:
+    pass
+    #show_result()
+
+
+
 def display_question():
   question, option1, option2, option3, option4, answer = questions[current_question]
   question_label.config(text=question)
-  option1_btn.config(text=option1, state=tk.NORMAL)
-  option2_btn.config(text=option2, state=tk.NORMAL)
-  option3_btn.config(text=option3, state=tk.NORMAL)
-  option4_btn.config(text=option4, state=tk.NORMAL)
+  option1_btn.config(text=option1, state=tk.NORMAL, command=lambda: check_answer(1))
+  option2_btn.config(text=option2, state=tk.NORMAL, command=lambda: check_answer(2))
+  option3_btn.config(text=option3, state=tk.NORMAL, command=lambda: check_answer(3))
+  option4_btn.config(text=option4, state=tk.NORMAL, command=lambda: check_answer(4))
 
-
-
-
+  correct_answer.set(answer)
 
 window = tk.Tk()
 window.title("Python Quiz")

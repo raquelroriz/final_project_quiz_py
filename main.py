@@ -14,7 +14,11 @@ class QuizGame:
         self.button_color = "#6C5CE7"
         self.button_text_color = "#FFFFFF"
 
-        self.play_again_color = "#00B894"
+        # Novas cores para o feedback de resposta
+        self.correct_color = "#00B894" 
+        self.wrong_color = "#D63031"    
+
+        self.play_again_color = "#09D031"
 
         self.df = pd.read_csv("data/questions.csv")
         self.questions = self.df.sample(n=10).values.tolist()
@@ -57,6 +61,7 @@ class QuizGame:
         button_style = {
             "bg": self.button_color,
             "fg": self.button_text_color,
+            "disabledforeground": "#FFFFFF",
             "width": 30,
             "font": ("Arial", 10, "bold"),
             "bd": 0,
@@ -85,6 +90,13 @@ class QuizGame:
                                      **button_style)
         self.option4_btn.pack(pady=8)
 
+        self.buttons_dict = {
+            1: self.option1_btn,
+            2: self.option2_btn,
+            3: self.option3_btn,
+            4: self.option4_btn
+        }
+
         self.play_again_btn = tk.Button(
             self.window,
             text="Play Again",
@@ -105,19 +117,36 @@ class QuizGame:
 
         self.question_label.config(text=q)
 
-        self.option1_btn.config(text=o1, state=tk.NORMAL)
-        self.option2_btn.config(text=o2, state=tk.NORMAL)
-        self.option3_btn.config(text=o3, state=tk.NORMAL)
-        self.option4_btn.config(text=o4, state=tk.NORMAL)
+        for btn in self.buttons_dict.values():
+            btn.config(bg=self.button_color, state=tk.NORMAL)
+
+        self.option1_btn.config(text=o1)
+        self.option2_btn.config(text=o2)
+        self.option3_btn.config(text=o3)
+        self.option4_btn.config(text=o4)
 
         self.correct_answer.set(answer)
 
     def check_answer(self, answer):
+
+        for btn in self.buttons_dict.values():
+            btn.config(state=tk.DISABLED)
+
+
+        clicked_button = self.buttons_dict[answer]
+
         if answer == self.correct_answer.get():
             self.score += 1
+            clicked_button.config(bg=self.correct_color)
+        else:
+            clicked_button.config(bg=self.wrong_color)
+            self.buttons_dict[self.correct_answer.get()].config(bg=self.correct_color)
 
         self.current_question += 1
 
+        self.window.after(2000, self.next_step)
+
+    def next_step(self):
         if self.current_question < len(self.questions):
             self.display_question()
         else:

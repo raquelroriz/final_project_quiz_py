@@ -41,8 +41,6 @@ This project covers the following topics:
 
 
 # Project Structure
-
-```bash
 final_project_quiz_py/
 │
 ├── data/

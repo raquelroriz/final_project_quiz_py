@@ -7,6 +7,7 @@ The user answers multiple-choice Python questions and receives a final score at 
 
 # Features
 - Graphical User Interface (GUI)
+- Object-Oriented architecture
 - Random quiz questions
 - Multiple-choice answers
 - Final score display
@@ -24,6 +25,9 @@ The user answers multiple-choice Python questions and receives a final score at 
 # REDI Requirements Covered
 This project covers the following topics:
 
+## Object-Oriented Programming (OOP)
+- Structured using classes, methods, and encapsulated states (`QuizGame`)
+
 ## File Processing
 - Reading quiz questions from a CSV file using pandas
 
@@ -33,7 +37,7 @@ This project covers the following topics:
   - Pillow (PIL)
 
 ## Error Handling and Exceptions
-- Handling missing files and invalid operations using try/except
+- Handling missing assets or files and invalid operations using try/except
 
 
 # Project Structure

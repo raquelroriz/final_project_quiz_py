@@ -4,7 +4,7 @@ import pandas as pd
 import random
 from PIL import Image, ImageTk 
 
-df = pd.read_csv("questions.csv")
+df = pd.read_csv("data/questions.csv")
 
 questions = df.sample(n=10).values.tolist()
 
@@ -72,7 +72,7 @@ button_text_color = "#FFFFFF"
 window.config(bg=background_color)
 window.option_add("*Font", "Arial 12")
 
-image_original = Image.open("app_icon.png")
+image_original = Image.open("assets/app_icon.png")
 image_resized = image_original.resize((64, 64), Image.Resampling.LANCZOS)
 app_icon = ImageTk.PhotoImage(image_resized)
 

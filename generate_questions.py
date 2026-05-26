@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 questions = [
     ["What is the correct file extension for Python files?", ".pt", ".py", ".python", ".pyt", 2],
@@ -67,6 +68,10 @@ df = pd.DataFrame(
     columns=["question", "option1", "option2", "option3", "option4", "correct_answer"]
 )
 
-df.to_csv("questions.csv", index=False)
+try:
+    os.makedirs("data", exist_ok=True)
+    df.to_csv("data/questions.csv", index=False)
+    print("Questions have been saved successfully!")
 
-print("Questions have been saved to questions.csv")
+except Exception as e:
+    print(f"Error while saving file: {e}")

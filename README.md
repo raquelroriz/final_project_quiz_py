@@ -41,15 +41,18 @@ This project covers the following topics:
 
 
 # Project Structure
+```text
 final_project_quiz_py/
-│
 ├── data/
 │   └── questions.csv
-│
 ├── assets/
 │   └── app_icon.png
-│
 ├── main.py
 ├── generate_questions.py
 ├── requirements.txt
 └── README.md
+```
+
+<p align="center">
+  <img src="assets/quizDemo.gif" alt="Python Quiz Game">
+</p>

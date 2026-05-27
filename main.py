@@ -144,7 +144,7 @@ class QuizGame:
 
         self.current_question += 1
 
-        self.window.after(2000, self.next_step)
+        self.window.after(1000, self.next_step)
 
     def next_step(self):
         if self.current_question < len(self.questions):
@@ -180,4 +180,4 @@ class QuizGame:
 if __name__ == "__main__":
     window = tk.Tk()
     app = QuizGame(window)
-    window.mainloop()
+    window.mainloop()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
